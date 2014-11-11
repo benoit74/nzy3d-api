@@ -1,0 +1,10 @@
+﻿<Window x:Class="nzy3d_wpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+    <WindowsFormsHost HorizontalAlignment="Stretch" Margin="10,10,12,10" Name="WindowsFormsHost1" VerticalAlignment="Stretch">
+      <nzy3D:Renderer3D x:Name="Renderer1" />
+    </WindowsFormsHost>
+    </Grid>
+</Window>
