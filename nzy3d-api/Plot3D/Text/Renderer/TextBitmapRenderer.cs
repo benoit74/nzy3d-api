@@ -62,7 +62,7 @@ namespace nzy3D.Plot3D.Text.Renderers
 					y = (float)(posScreen.y - _fontHeight / 2);
 					break;
 				case Align.Valign.BOTTOM:
-					y = (float)(posScreen.x - _fontHeight);
+					y = (float)(posScreen.y - _fontHeight);
 					break;
 				default:
 					throw new Exception("Unsupported valign value");

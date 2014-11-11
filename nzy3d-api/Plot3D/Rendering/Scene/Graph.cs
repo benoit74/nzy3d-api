@@ -237,7 +237,7 @@ namespace nzy3D.Plot3D.Rendering.Scene
 					lock (_components) {
 						foreach (AbstractDrawable a in _components) {
 							if (((a != null)) && ((a.Bounds != null))) {
-								box.@add(a.Bounds);
+								box.Add(a.Bounds);
 							}
 						}
 					}

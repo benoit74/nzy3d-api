@@ -157,7 +157,7 @@ namespace nzy3D.Maths
 		/// Adds another <see cref="BoundingBox3d"/> to the bounding box, and enlarge the bounding
 		/// box if its points lies outside of it (i.e. merge other bounding box inside current one)
 		/// </summary>
-		public void @add(BoundingBox3d b)
+		public void Add(BoundingBox3d b)
 		{
 			this.@add(b.m_xmin, b.m_ymin, b.m_zmin);
 			this.@add(b.m_xmax, b.m_ymax, b.m_zmax);

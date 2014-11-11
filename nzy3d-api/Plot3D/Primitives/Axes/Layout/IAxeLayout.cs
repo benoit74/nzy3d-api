@@ -27,6 +27,7 @@ namespace nzy3D.Plot3D.Primitives.Axes.Layout
 		bool XTickLabelDisplayed { get; set; }
 		bool YTickLabelDisplayed { get; set; }
 		bool ZTickLabelDisplayed { get; set; }
+        bool TickLineDisplayed { get; set; }
 		ITickProvider XTickProvider { get; set; }
 		ITickProvider YTickProvider { get; set; }
 		ITickProvider ZTickProvider { get; set; }
@@ -43,7 +44,8 @@ namespace nzy3D.Plot3D.Primitives.Axes.Layout
 		float[] YTicks(float min, float max);
 		float[] ZTicks(float min, float max);
 
-	}
+
+    }
 
 }
 

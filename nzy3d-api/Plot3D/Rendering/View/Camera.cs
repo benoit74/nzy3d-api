@@ -122,7 +122,7 @@ namespace nzy3D.Plot3D.Rendering.View
 		/// <summary>
 		/// Return true if the given point is on the left of the vector eye->target.
 		/// </summary>
-		public bool Side(Coord3d point)
+		public bool side(Coord3d point)
 		{
 			return 0 < ((point.x - Target.x) * (Eye.y - Target.y) - (point.y - Target.y) * (Eye.x - Target.x));
 		}

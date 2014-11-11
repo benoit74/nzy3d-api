@@ -129,7 +129,7 @@ namespace nzy3D.Plot3D.Primitives
 		public void setData(BoundingBox3d box)
 		{
 			_bbox.reset();
-			_bbox.@add(box);
+			_bbox.Add(box);
 			_quads = new List<Polygon>(6);
 			// Add 6 polygons to list
 			for (int i = 0; i <= 5; i++) {

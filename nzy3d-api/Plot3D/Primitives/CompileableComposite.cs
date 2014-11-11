@@ -215,7 +215,7 @@ namespace nzy3D.Plot3D.Primitives
 				lock (_components) {
 					foreach (AbstractDrawable c in _components) {
 						if ((c != null) && (c.Bounds != null)) {
-							box.@add(c.Bounds);
+							box.Add(c.Bounds);
 						}
 					}
 				}

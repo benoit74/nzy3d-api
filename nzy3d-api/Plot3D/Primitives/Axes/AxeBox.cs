@@ -152,7 +152,7 @@ namespace nzy3D.Plot3D.Primitives.Axes
 			GL.Disable(EnableCap.LineStipple);
 			// Draw ticks on the closest axes
 			_wholeBounds.reset();
-			_wholeBounds.@add(_boxBounds);
+			_wholeBounds.Add(_boxBounds);
 			//gl.glPolygonMode(GL2.GL_FRONT_AND_BACK, GL2.GL_LINE);
 			// Display x axis ticks
 			if ((_xrange > 0 & _layout.XTickLabelDisplayed)) {
@@ -160,18 +160,18 @@ namespace nzy3D.Plot3D.Primitives.Axes
 				if ((((_view != null) && _view.ViewMode == nzy3D.Plot3D.Rendering.View.Modes.ViewPositionMode.TOP))) {
 					BoundingBox3d bbox = drawTicks(camera, 1, AxeDirection.AxeX, _layout.XTickColor, Halign.LEFT, Valign.TOP);
 					// setup tick labels for X on the bottom
-					_wholeBounds.@add(bbox);
+					_wholeBounds.Add(bbox);
 				} else {
 					// otherwise computed placement
 					int xselect = findClosestXaxe(camera);
 					if ((xselect >= 0)) {
 						BoundingBox3d bbox = drawTicks(camera, xselect, AxeDirection.AxeX, _layout.XTickColor);
-						_wholeBounds.@add(bbox);
+						_wholeBounds.Add(bbox);
 					} else {
 						//System.err.println("no x axe selected: " + Arrays.toString(quadIsHidden));
 						// HACK: handles "on top" view, when all face of cube are drawn, which forbid to select an axe automatically
 						BoundingBox3d bbox = drawTicks(camera, 2, AxeDirection.AxeX, _layout.XTickColor, Halign.CENTER, Valign.TOP);
-						_wholeBounds.@add(bbox);
+						_wholeBounds.Add(bbox);
 					}
 				}
 			}
@@ -180,17 +180,17 @@ namespace nzy3D.Plot3D.Primitives.Axes
 				if ((((_view != null)) && _view.ViewMode == nzy3D.Plot3D.Rendering.View.Modes.ViewPositionMode.TOP)) {
 					BoundingBox3d bbox = drawTicks(camera, 2, AxeDirection.AxeY, _layout.YTickColor, Halign.LEFT, Valign.GROUND);
 					// setup tick labels for Y on the left
-					_wholeBounds.@add(bbox);
+					_wholeBounds.Add(bbox);
 				} else {
 					int yselect = findClosestYaxe(camera);
 					if ((yselect >= 0)) {
 						BoundingBox3d bbox = drawTicks(camera, yselect, AxeDirection.AxeY, _layout.YTickColor);
-						_wholeBounds.@add(bbox);
+						_wholeBounds.Add(bbox);
 					} else {
 						//System.err.println("no y axe selected: " + Arrays.toString(quadIsHidden));
 						// HACK: handles "on top" view, when all face of cube are drawn, which forbid to select an axe automatically
 						BoundingBox3d bbox = drawTicks(camera, 1, AxeDirection.AxeY, _layout.YTickColor, Halign.RIGHT, Valign.GROUND);
-						_wholeBounds.@add(bbox);
+						_wholeBounds.Add(bbox);
 					}
 				}
 			}
@@ -201,7 +201,7 @@ namespace nzy3D.Plot3D.Primitives.Axes
 					int zselect = findClosestZaxe(camera);
 					if ((zselect >= 0)) {
 						BoundingBox3d bbox = drawTicks(camera, zselect, AxeDirection.AxeZ, _layout.ZTickColor);
-						_wholeBounds.@add(bbox);
+						_wholeBounds.Add(bbox);
 					}
 				}
 			}
@@ -639,10 +639,10 @@ namespace nzy3D.Plot3D.Primitives.Axes
 		{
 			int quad_0 = 0;
 			int quad_1 = 0;
-			float tickLength = 20.0f;
-			// with respect to range
+			float tickLength = 20.0f; // with respect to range
 			float axeLabelDist = 2.5f;
 			BoundingBox3d ticksTxtBounds = new BoundingBox3d();
+
 			// Retrieve the quads that intersect and create the selected axe
 			switch (direction) {
 				case AxeDirection.AxeX:
@@ -660,29 +660,30 @@ namespace nzy3D.Plot3D.Primitives.Axes
 				default:
 					throw new Exception("Unsupported axe direction");
 			}
-			// Computes POSition of ticks lying on the selected axe
+			
+            // Computes PoSition of ticks lying on the selected axe
 			// (i.e. 1st point of the tick line)
 			float xpos = _normx[quad_0] + _normx[quad_1];
 			float ypos = _normy[quad_0] + _normy[quad_1];
 			float zpos = _normz[quad_0] + _normz[quad_1];
-			// Variables for storing the position of the LABel position
-			// (2nd point on the tick line)
-			float xlab = 0;
-			float ylab = 0;
-			float zlab = 0;
-			float xlab2 = 0;
-			float ylab2 = 0;
-			float zlab2 = 0;
+            
 			// Computes the DIRection of the ticks
 			// assuming initial vector point is the center
 			float xdir = (float)((_normx[quad_0] + _normx[quad_1]) - _center.x);
             float ydir = (float)((_normy[quad_0] + _normy[quad_1]) - _center.y);
             float zdir = (float)((_normz[quad_0] + _normz[quad_1]) - _center.z);
-			xdir = (xdir == 0 ? 0 : xdir / Math.Abs(xdir));
-			// so that direction as length 1
+			xdir = (xdir == 0 ? 0 : xdir / Math.Abs(xdir)); // so that direction as length 1
 			ydir = (ydir == 0 ? 0 : ydir / Math.Abs(ydir));
 			zdir = (zdir == 0 ? 0 : zdir / Math.Abs(zdir));
-			// Draw the label for axis
+
+
+            // Variables for storing the position of the Label position
+            // (2nd point on the tick line)
+            float xlab = 0;
+            float ylab = 0;
+            float zlab = 0;
+            
+            // Draw the label for axis
 			string axeLabel = null;
 			int dist = 1;
 			switch (direction) {
@@ -707,110 +708,152 @@ namespace nzy3D.Plot3D.Primitives.Axes
 				default:
 					throw new Exception("Unsupported axe direction");
 			}
-
-			if (((direction == AxeDirection.AxeX & _layout.XAxeLabelDisplayed) | (direction == AxeDirection.AxeY & _layout.YAxeLabelDisplayed) | (direction == AxeDirection.AxeZ & _layout.ZAxeLabelDisplayed))) {
-				Coord3d labelPosition = new Coord3d(xlab, ylab, zlab);
-				//If (Not IsNothing(txtRenderer)) Then
-				//txtRenderer.appendText(gl, glu, cam, axeLabel, labelPosition, Halign.CENTER, Valign.CENTER, color);
-				//else
-				BoundingBox3d labelBounds = _txt.drawText(cam, axeLabel, labelPosition, Halign.CENTER, Valign.CENTER, color);
-				if (((labelBounds != null))) {
-					ticksTxtBounds.@add(labelBounds);
-				}
-				//End If
-			}
-			// Retrieve the selected tick positions
-			float[] ticks = null;
-			switch (direction) {
-				case AxeDirection.AxeX:
-					ticks = _layout.XTicks();
-					break;
-				case AxeDirection.AxeY:
-                    ticks = _layout.YTicks();
-					break;
-				case AxeDirection.AxeZ:
-                    ticks = _layout.ZTicks();
-					break;
-				default:
-					throw new Exception("Unsupported axe direction");
-			}
-
-			// Draw the ticks, labels, and dotted lines iteratively
-			string tickLabel = "";
-			GL.Color3(color.r, color.g, color.b);
-			GL.LineWidth(1);
-
-			for (int t = 0; t <= ticks.Length - 1; t++) {
-				// Shift the tick vector along the selected axis
-				// and set the tick length
-				switch (direction) {
-					case AxeDirection.AxeX:
-						xpos = ticks[t];
-						xlab = xpos;
-						ylab = (_yrange / tickLength) * ydir + ypos;
-						zlab = (_zrange / tickLength) * zdir + zpos;
-						xlab2 = xpos;
-						ylab2 = (_yrange / tickLength) * ydir / 2 + ypos;
-						zlab2 = (_zrange / tickLength) * zdir / 2 + zpos;
-						tickLabel = _layout.XTickRenderer.Format(xpos);
-						break;
-					case AxeDirection.AxeY:
-                        ypos = ticks[t];
-						xlab = (_xrange / tickLength) * xdir + xpos;
-						ylab = ypos;
-						zlab = (_zrange / tickLength) * zdir + zpos;
-						xlab2 = (_xrange / tickLength) * xdir / 2 + xpos;
-						ylab2 = ypos;
-						zlab2 = (_zrange / tickLength) * zdir / 2 + zpos;
-						tickLabel = _layout.YTickRenderer.Format(ypos);
-						break;
-					case AxeDirection.AxeZ:
-                        zpos = ticks[t];
-						xlab = (_xrange / tickLength) * xdir + xpos;
-						ylab = (_yrange / tickLength) * ydir + ypos;
-						zlab = zpos;
-						xlab2 = (_xrange / tickLength) * xdir / 2 + xpos;
-						ylab2 = (_yrange / tickLength) * ydir / 2 + ypos;
-						zlab2 = zpos;
-						tickLabel = _layout.ZTickRenderer.Format(zpos);
-						break;
-					default:
-						throw new Exception("Unsupported axe direction");
-				}
-
-				Coord3d tickPosition = new Coord3d(xlab, ylab, zlab);
-				// Draw the tick line
-				GL.Begin(BeginMode.Lines);
-				GL.Vertex3(xpos, ypos, zpos);
-				GL.Vertex3(xlab2, ylab2, zlab2);
-				GL.End();
-				// Select the alignement of the tick label
-				if (hal == Halign.DEFAULT) {
-                    hal = (cam.Side(tickPosition) ? Halign.LEFT : Halign.RIGHT);
-				}
-                if (val == Valign.DEFAULT)
-                {
-					if ((direction == AxeDirection.AxeZ)) {
-                        val = Valign.CENTER;
-					} else {
-						if ((zdir > 0)) {
-                            val = Valign.TOP;
-						} else {
-                            val = Valign.BOTTOM;
-						}
-					}
-				} 
-				// Draw the text label of the current tick
-				//If (txtRenderer! = null) Then
-				//txtRenderer.appendText(gl, glu, cam, tickLabel, tickPosition, hAlign, vAlign, color);
-				//else{
-				BoundingBox3d tickBounds = _txt.drawText(cam, tickLabel, tickPosition, hal, val, color);
-				if (((tickBounds != null))) {
-					ticksTxtBounds.@add(tickBounds);
-				}
-			}
-			return ticksTxtBounds;
+        
+            drawAxisLabel(cam, direction, color, ticksTxtBounds, xlab, ylab, zlab, axeLabel);
+            drawAxisTicks(cam, direction, color, hal, val, tickLength, ticksTxtBounds, xpos, ypos, zpos, xdir, ydir, zdir, getAxisTicks(direction));
+        	return ticksTxtBounds;
 		}
+
+        public void drawAxisLabel(Camera cam, AxeDirection direction, Color color, BoundingBox3d ticksTxtBounds, double xlab, double ylab, double zlab, String axeLabel)
+        {
+            if ((direction == AxeDirection.AxeX && _layout.XAxeLabelDisplayed)
+             || (direction == AxeDirection.AxeY && _layout.YAxeLabelDisplayed)
+             || (direction == AxeDirection.AxeZ && _layout.ZAxeLabelDisplayed))
+            {
+                Coord3d labelPosition = new Coord3d(xlab, ylab, zlab);
+                BoundingBox3d labelBounds = _txt.drawText(cam, axeLabel, labelPosition, Halign.CENTER, Valign.CENTER, color);
+                if (labelBounds != null)
+                    ticksTxtBounds.Add(labelBounds);
+            }
+        }
+
+        public float[] getAxisTicks(AxeDirection direction)
+        {
+            float[] ticks;
+            switch (direction)
+            {
+                case AxeDirection.AxeX:
+                    ticks = _layout.XTicks();
+                    break;
+                case AxeDirection.AxeY:
+                    ticks = _layout.YTicks();
+                    break;
+                case AxeDirection.AxeZ:
+                    ticks = _layout.ZTicks();
+                    break;
+                default:
+                    throw new Exception("Unsupported axe direction");
+            }
+            return ticks;
+        }
+
+        public void drawAxisTicks(Camera cam, AxeDirection direction, Color color, Halign hal, Valign val, float tickLength, BoundingBox3d ticksTxtBounds, float xpos,
+            float ypos, float zpos, float xdir, float ydir, float zdir, float[] ticks)
+        {
+            double xlab;
+            double ylab;
+            double zlab;
+            String tickLabel = "";
+
+            for (int t = 0; t < ticks.Length; t++)
+            {
+                // Shift the tick vector along the selected axis
+                // and set the tick length
+                switch (direction)
+                {
+                    case AxeDirection.AxeX:
+                        xpos = ticks[t];
+                        xlab = xpos;
+                        ylab = (_yrange / tickLength) * ydir + ypos;
+                        zlab = (_zrange / tickLength) * zdir + zpos;
+                        tickLabel = _layout.XTickRenderer.Format(xpos);
+                        break;
+                    case AxeDirection.AxeY:
+                        ypos = ticks[t];
+                        xlab = (_xrange / tickLength) * xdir + xpos;
+                        ylab = ypos;
+                        zlab = (_zrange / tickLength) * zdir + zpos;
+                        tickLabel = _layout.YTickRenderer.Format(ypos);
+                        break;
+                    case AxeDirection.AxeZ:
+                        zpos = ticks[t];
+                        xlab = (_xrange / tickLength) * xdir + xpos;
+                        ylab = (_yrange / tickLength) * ydir + ypos;
+                        zlab = zpos;
+                        tickLabel = _layout.ZTickRenderer.Format(zpos);
+                        break;
+                    default:
+                        throw new Exception("Unsupported axe direction");
+                }
+                Coord3d tickPosition = new Coord3d(xlab, ylab, zlab);
+
+                if (_layout.TickLineDisplayed)
+                {
+                    drawTickLine(color, xpos, ypos, zpos, xlab, ylab, zlab);
+                }
+
+                // Select the alignement of the tick label
+                Halign hAlign = layoutHorizontal(direction, cam, hal, tickPosition);
+                Valign vAlign = layoutVertical(direction, val, zdir);
+
+                // Draw the text label of the current tick
+                drawAxisTickNumericLabel(direction, cam, color, hAlign, vAlign, ticksTxtBounds, tickLabel, tickPosition);
+            }
+        }
+
+        public void drawAxisTickNumericLabel(AxeDirection direction, Camera cam, Color color, Halign hAlign, Valign vAlign, BoundingBox3d ticksTxtBounds, String tickLabel,
+                Coord3d tickPosition)
+        {
+            GL.LoadIdentity();
+            GL.Scale(_scale.x, _scale.y, _scale.z);
+
+            BoundingBox3d tickBounds = _txt.drawText(cam, tickLabel, tickPosition, hAlign, vAlign, color);
+            if (tickBounds != null)
+                ticksTxtBounds.Add(tickBounds);
+        }
+
+
+        public Valign layoutVertical(AxeDirection direction, Valign val, float zdir)
+        {
+            Valign vAlign;
+            if (val == null || val == Valign.DEFAULT)
+            {
+                if (direction == AxeDirection.AxeZ)
+                    vAlign = Valign.CENTER;
+                else
+                {
+                    if (zdir > 0)
+                        vAlign = Valign.TOP;
+                    else
+                        vAlign = Valign.BOTTOM;
+                }
+            }
+            else
+                vAlign = val;
+            return vAlign;
+        }
+
+        public Halign layoutHorizontal(AxeDirection direction, Camera cam, Halign hal, Coord3d tickPosition)
+        {
+            Halign hAlign;
+            if (hal == null || hal == Halign.DEFAULT)
+                hAlign = cam.side(tickPosition) ? Halign.LEFT : Halign.RIGHT;
+            else
+                hAlign = hal;
+            return hAlign;
+        }
+
+        public void drawTickLine(Color color, double xpos, double ypos, double zpos, double xlab, double ylab, double zlab)
+        {
+            GL.Color3(color.r, color.g, color.b);
+            GL.LineWidth(1);
+
+            // Draw the tick line
+            GL.Begin(BeginMode.Lines);
+            GL.Vertex3(xpos, ypos, zpos);
+            GL.Vertex3(xlab, ylab, zlab);
+            GL.End();
+        }
 
 		/// <summary>
 		/// Selects the closest displayable X axe from camera
@@ -893,7 +936,7 @@ namespace nzy3D.Plot3D.Primitives.Axes
 			for (int a = 0; a <= na - 1; a++) {
 				if ((distAxeZ[a] < double.MaxValue)) {
 					Coord3d axeCEnter = new Coord3d((_axeZx[a, 0] + _axeZx[a, 1]) / 2, (_axeZy[a, 0] + _axeZy[a, 1]) / 2, (_axeZz[a, 0] + _axeZz[a, 1]) / 2);
-					if (!cam.Side(axeCEnter)) {
+					if (!cam.side(axeCEnter)) {
 						distAxeZ[a] *= -1;
 					}
 				}

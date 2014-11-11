@@ -718,9 +718,9 @@ namespace nzy3D.Plot3D.Rendering.View
 				_targetBox = new BoundingBox3d(0, 1, 0, 1, 0, 1);
 			}
 			BoundingBox3d boundsScaled = new BoundingBox3d();
-			boundsScaled.@add(_targetBox.scale(_scaling));
+			boundsScaled.Add(_targetBox.scale(_scaling));
 			if (MAINTAIN_ALL_OBJECTS_IN_VIEW) {
-				boundsScaled.@add(Scene.Graph.Bounds.scale(_scaling));
+				boundsScaled.Add(Scene.Graph.Bounds.scale(_scaling));
 			}
 			return boundsScaled;
 		}

@@ -20,7 +20,8 @@ namespace nzy3D.Plot3D.Primitives.Axes.Layout
 		internal string _zAxeLabel;
 		internal bool _xAxeLabelDisplayed;
 		internal bool _yAxeLabelDisplayed;
-		internal bool _zAxeLabelDisplayed;
+        internal bool _zAxeLabelDisplayed;
+        internal bool _tickLineDisplayed;
 		internal float[] _xTicks;
 		internal float[] _yTicks;
 		internal float[] _zTicks;
@@ -63,8 +64,9 @@ namespace nzy3D.Plot3D.Primitives.Axes.Layout
 			ZTickRenderer = new DefaultDecimalTickRenderer(6);
 			FaceDisplayed = false;
 			XTickLabelDisplayed = true;
-			YTickLabelDisplayed = true;
-			ZTickLabelDisplayed = true;
+            YTickLabelDisplayed = true;
+            ZTickLabelDisplayed = true;
+            TickLineDisplayed = true;
 			MainColor = Color.BLACK;
 		}
 
@@ -248,7 +250,13 @@ namespace nzy3D.Plot3D.Primitives.Axes.Layout
 			set { _zTickLabelDisplayed = value; }
 		}
 
-	}
+        public bool TickLineDisplayed
+        {
+            get { return _tickLineDisplayed; }
+            set { _tickLineDisplayed = value; }
+        }
+
+    }
 
 }
 
