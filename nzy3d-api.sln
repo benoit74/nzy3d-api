@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nzy3d-api", "nzy3d-api\nzy3d-api.csproj", "{6E3BDDD2-540E-4B95-96CB-A9BF119E1241}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nzy3d-tests", "nzy3d-tests\nzy3d-tests.csproj", "{52151543-8724-4DA0-B207-3F0CF62B486A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nzy3d-wpfDemo", "nzy3d-wpfDemo\nzy3d-wpfDemo.csproj", "{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6E3BDDD2-540E-4B95-96CB-A9BF119E1241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3BDDD2-540E-4B95-96CB-A9BF119E1241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3BDDD2-540E-4B95-96CB-A9BF119E1241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52151543-8724-4DA0-B207-3F0CF62B486A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52151543-8724-4DA0-B207-3F0CF62B486A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52151543-8724-4DA0-B207-3F0CF62B486A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52151543-8724-4DA0-B207-3F0CF62B486A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

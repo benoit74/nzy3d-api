@@ -228,30 +228,21 @@ namespace nzy3D.Plot3D.Builder.Delaunay.Jdt
 		/// <remarks>Note: on boundary is considered inside</remarks>
 		public bool contains(Point_dt p)
 		{
-			return this.contains(p, true);
-		}
-
-		/// <summary>
-		/// Determines if this triangle contains the point p.
-		/// </summary>
-		/// <param name="p">The query point</param>
-		/// <param name="boundaryIsInside">True is boundary is considered as inside the triangle.</param>
-		/// <returns>True if p is not null and is inside this triangle</returns>
-		private bool contains(Point_dt p, bool boundaryIsInside)
-		{
 			if (_halfplane | p == null) {
 				return false;
 			}
 			if (isCorner(p)) {
-				return boundaryIsInside;
+				return true;
 			}
 			int a12 = p.pointLineTest(_a, _b);
 			int a23 = p.pointLineTest(_b, _c);
 			int a31 = p.pointLineTest(_c, _a);
-			if (((a12 == Point_dt.LEFT & a23 == Point_dt.LEFT & a31 == Point_dt.LEFT) || (a12 == Point_dt.RIGHT & a23 == Point_dt.RIGHT & a31 == Point_dt.RIGHT) | (boundaryIsInside & a12 == Point_dt.ONSEGMENT & a23 == Point_dt.ONSEGMENT & a31 == Point_dt.ONSEGMENT))) {
-				return true;
-			}
-			return false;
+            if ((a12 == Point_dt.LEFT && a23 == Point_dt.LEFT && a31 == Point_dt.LEFT)
+                || (a12 == Point_dt.RIGHT && a23 == Point_dt.RIGHT && a31 == Point_dt.RIGHT)
+                || (a12 == Point_dt.ONSEGMENT || a23 == Point_dt.ONSEGMENT || a31 == Point_dt.ONSEGMENT))
+                return true;
+            else
+                return false;
 		}
 
 		/// <summary>
@@ -261,9 +252,24 @@ namespace nzy3D.Plot3D.Builder.Delaunay.Jdt
 		/// <returns>True if p is not null and is inside this triangle</returns>
 		/// <remarks>Note: on boundary is considered outside</remarks>
 		public bool contains_BoundaryIsOutside(Point_dt p)
-		{
-			return this.contains(p, false);
-		}
+        {
+            if (_halfplane | p == null)
+            {
+                return false;
+            }
+            if (isCorner(p))
+            {
+                return false;
+            }
+            int a12 = p.pointLineTest(_a, _b);
+            int a23 = p.pointLineTest(_b, _c);
+            int a31 = p.pointLineTest(_c, _a);
+            if ((a12 == Point_dt.LEFT && a23 == Point_dt.LEFT && a31 == Point_dt.LEFT)
+                || (a12 == Point_dt.RIGHT && a23 == Point_dt.RIGHT && a31 == Point_dt.RIGHT))
+                return true;
+            else
+                return false;
+        }
 
 		/// <summary>
 		/// Checks if the given point is a corner of this triangle.

@@ -127,7 +127,7 @@ namespace nzy3D.Plot3D.Builder.Delaunay.Jdt
 		{
 			double dx = b.x - a.x;
 			double dy = b.y - a.y;
-			double res = dy * (x - a.x) + dx * (y - a.y);
+			double res = dy * (x - a.x) - dx * (y - a.y);
 			if (res < 0) {
 				return LEFT;
 			}
