@@ -36,6 +36,8 @@
             this.chkDisplayXAxisLabel = new System.Windows.Forms.CheckBox();
             this.chkDisplayTickLines = new System.Windows.Forms.CheckBox();
             this.myRenderer3D = new nzy3D.Plot3D.Rendering.View.Renderer3D();
+            this.txtCheckboxes = new System.Windows.Forms.TextBox();
+            this.txtRotateCamera = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // chkDisplayXTicks
@@ -148,11 +150,38 @@
             this.myRenderer3D.TabIndex = 9;
             this.myRenderer3D.VSync = false;
             // 
+            // txtCheckboxes
+            // 
+            this.txtCheckboxes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCheckboxes.Location = new System.Drawing.Point(553, 173);
+            this.txtCheckboxes.Multiline = true;
+            this.txtCheckboxes.Name = "txtCheckboxes";
+            this.txtCheckboxes.ReadOnly = true;
+            this.txtCheckboxes.Size = new System.Drawing.Size(116, 60);
+            this.txtCheckboxes.TabIndex = 12;
+            this.txtCheckboxes.Text = "(do not uncheck three first options in order to be able to see the effect of the " +
+    "four last ones)";
+            this.txtCheckboxes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtRotateCamera
+            // 
+            this.txtRotateCamera.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtRotateCamera.Location = new System.Drawing.Point(553, 325);
+            this.txtRotateCamera.Multiline = true;
+            this.txtRotateCamera.Name = "txtRotateCamera";
+            this.txtRotateCamera.ReadOnly = true;
+            this.txtRotateCamera.Size = new System.Drawing.Size(116, 49);
+            this.txtRotateCamera.TabIndex = 11;
+            this.txtRotateCamera.Text = "(toggle camera rotation by double-clicking on the graph)";
+            this.txtRotateCamera.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 432);
+            this.Controls.Add(this.txtCheckboxes);
+            this.Controls.Add(this.txtRotateCamera);
             this.Controls.Add(this.myRenderer3D);
             this.Controls.Add(this.chkDisplayTickLines);
             this.Controls.Add(this.chkDisplayZAxisLabel);
@@ -180,6 +209,8 @@
         private System.Windows.Forms.CheckBox chkDisplayXAxisLabel;
         private System.Windows.Forms.CheckBox chkDisplayTickLines;
         private nzy3D.Plot3D.Rendering.View.Renderer3D myRenderer3D;
+        private System.Windows.Forms.TextBox txtCheckboxes;
+        private System.Windows.Forms.TextBox txtRotateCamera;
     }
 }
 
