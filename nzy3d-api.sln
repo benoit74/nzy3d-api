@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nzy3d-tests", "nzy3d-tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nzy3d-wpfDemo", "nzy3d-wpfDemo\nzy3d-wpfDemo.csproj", "{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nzy3d-winformsDemo", "nzy3d-winformsDemo\nzy3d-winformsDemo.csproj", "{8C148A22-B1DE-44F2-AEA8-90853DCA6EFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE0A618C-AB04-4CCE-8831-8495A8A1E18E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C148A22-B1DE-44F2-AEA8-90853DCA6EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C148A22-B1DE-44F2-AEA8-90853DCA6EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C148A22-B1DE-44F2-AEA8-90853DCA6EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C148A22-B1DE-44F2-AEA8-90853DCA6EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
