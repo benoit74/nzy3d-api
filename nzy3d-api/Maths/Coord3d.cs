@@ -79,6 +79,16 @@ namespace nzy3D.Maths
 		}
 
 		/// <summary>
+		/// Set all values of Coord3d
+		/// </summary>
+		/// <returns>Self</returns>
+		/// <remarks></remarks>
+		public Coord3d set(Coord3d another)
+		{
+			return setvalues(another.x, another.y, another.z);
+		}
+
+		/// <summary>
 		/// Returns the x and y components as 2d coordinate
 		/// </summary>
 		/// <returns></returns>

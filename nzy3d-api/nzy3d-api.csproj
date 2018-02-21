@@ -201,6 +201,8 @@
     <Compile Include="Plot3D\Primitives\Parallelepiped.cs" />
     <Compile Include="Plot3D\Primitives\Point.cs" />
     <Compile Include="Plot3D\Primitives\Polygon.cs" />
+    <Compile Include="Plot3D\Primitives\Scatter.cs" />
+    <Compile Include="Plot3D\Primitives\ScatterMultiColor.cs" />
     <Compile Include="Plot3D\Primitives\Selectable\ISelectable.cs" />
     <Compile Include="Plot3D\Primitives\Shape.cs" />
     <Compile Include="Plot3D\Rendering\Canvas\ICanvas.cs" />
