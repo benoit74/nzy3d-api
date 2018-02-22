@@ -1,5 +1,4 @@
 ﻿using nzy3D.Colors;
-using nzy3D.Events;
 using nzy3D.Maths;
 using nzy3D.Plot3D.Rendering.View;
 using OpenTK.Graphics.OpenGL;
@@ -21,7 +20,7 @@ namespace nzy3D.Plot3D.Primitives
             ColorMapper = mapper;
         }
 
-        public void clear() {
+        public void Clear() {
             _coordinates = null;
             _bbox.reset();
         }
@@ -30,7 +29,6 @@ namespace nzy3D.Plot3D.Primitives
         public override void Draw(Camera cam)
         {
             
-            // doTransform (MISSING)
             _transform?.Execute();
 
             GL.PointSize(_width);
@@ -50,7 +48,7 @@ namespace nzy3D.Plot3D.Primitives
             
         }
 
-        private void updateBounds() {
+        private void UpdateBounds() {
             _bbox.reset();
             foreach (var c in _coordinates) {
                 _bbox.add(c);
@@ -64,7 +62,7 @@ namespace nzy3D.Plot3D.Primitives
             set
             {
                 _coordinates = value;
-                updateBounds();
+                UpdateBounds();
             }
         }
         
@@ -72,7 +70,7 @@ namespace nzy3D.Plot3D.Primitives
             get => _transform;
             set {
                 _transform = value;
-                updateBounds();
+                UpdateBounds();
             }
         }
 

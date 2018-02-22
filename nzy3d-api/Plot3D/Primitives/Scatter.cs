@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using nzy3D.Colors;
+﻿using nzy3D.Colors;
 using nzy3D.Events;
 using nzy3D.Maths;
 using nzy3D.Plot3D.Rendering.View;
@@ -16,8 +15,8 @@ namespace nzy3D.Plot3D.Primitives
         
         public Scatter() {
             _bbox = new BoundingBox3d();
-            this.Width = 1;
-            this.Color = Color.BLACK;
+            Width = 1;
+            Color = Color.BLACK;
         }
         
         public Scatter(Coord3d[] coordinates) : 
@@ -26,19 +25,19 @@ namespace nzy3D.Plot3D.Primitives
 
         public Scatter(Coord3d[] coordinates, Color rgb, float width = 1) {
             _bbox = new BoundingBox3d();
-            this.Data = coordinates ;
-            this.Width = width;
-            this.Color = rgb;
+            Data = coordinates ;
+            Width = width;
+            Color = rgb;
         }
 
         public Scatter(Coord3d[] coordinates, Color[] colors, float width = 1) {
             _bbox = new BoundingBox3d();
-            this.Data = coordinates ;
-            this.Width = width;
-            this.Colors = colors;
+            Data = coordinates ;
+            Width = width;
+            Colors = colors;
         }
         
-        public void clear() {
+        public void Clear() {
             _coordinates = null;
             _bbox.reset();
         }
@@ -46,7 +45,6 @@ namespace nzy3D.Plot3D.Primitives
         public override void Draw(Camera cam)
         {
             
-            // doTransform (MISSING)
             _transform?.Execute();
 
             GL.PointSize(_width);
@@ -80,11 +78,11 @@ namespace nzy3D.Plot3D.Primitives
             get => _transform;
             set {
                 _transform = value;
-                updateBounds();
+                UpdateBounds();
             }
         }
 
-        private void updateBounds() {
+        private void UpdateBounds() {
             _bbox.reset();
             foreach (var c in _coordinates) {
                 _bbox.add(c);
@@ -98,7 +96,7 @@ namespace nzy3D.Plot3D.Primitives
             set
             {
                 _coordinates = value;
-                updateBounds();
+                UpdateBounds();
             }
         }
 
