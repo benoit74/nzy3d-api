@@ -80,10 +80,6 @@ namespace nzy3D.Plot3D.Primitives
             get => _transform;
             set {
                 _transform = value;
-                foreach (var c in _coordinates)
-                {
-                    c.set(_transform.Compute(c));
-                }
                 updateBounds();
             }
         }
